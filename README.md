@@ -1,9 +1,7 @@
 # Python Junior
 
-Я прохожу курсы "Поколение Python" на Stepik.
-В репозитории собраны учебные задания и мини-проекты.
+The repository contains educational assignments and mini-projects.
 
-# Что умею
-- Python: списки, словари, функции
-- Работа с CSV и JSON
-- Логика и алгоритмы
+Python: lists, dictionaries, functions
+Working with CSV and JSON
+Logic and algorithms
