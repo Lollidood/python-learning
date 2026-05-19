@@ -1,18 +1,14 @@
-"""
-    Скрывает номер карты, оставляя только последние 4 цифры.
-    Все остальные цифры заменяются на '*'.
-
-    Пример:
-    hide_card("1234 5678 9012 3456") -> "************3456"
-    """
-
 def hide_card(card):
-    # оставляем только цифры
+"""
+Hides a card number, leaving only the last 4 digits.
+All other digits are replaced with '*'.
+"""
+   
     digits = ''.join(ch for ch in card if ch.isdigit())
 
-    # если цифр меньше 4, возвращаем как есть
+    # if there are fewer than 4 digits, return as is
     if len(digits) < 4:
         return digits
 
-    # формируем результат
-    return '*' * (len(digits) - 4) + digits[-4:]    
+    # form the result
+    return '*' * (len(digits) - 4) + digits[-4:]
