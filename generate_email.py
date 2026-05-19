@@ -1,18 +1,17 @@
 from string import digits
 
-
 def generate_emails(existing: list[str], new_users: list[str]) -> list[str]:
-    """Генерирует уникальные email-адреса для новых пользователей.
-    existing — список уже зарегистрированных email
-    new_users — список логинов новых пользователей
+    """Generates unique email addresses for new users.
+    existing — list of already registered emails
+    new_users — list of new user logins
     """
     logins = {}
 
-    # Обрабатываем уже существующие email
+    # Process existing emails
     for email in existing:
         login = email.split('@')[0]
-        base = login.rstrip(digits)      # логин без цифр в конце
-        num = login[len(base):]          # цифры в конце (если есть)
+        base = login.rstrip(digits)      # login without trailing digits
+        num = login[len(base):]          # trailing digits (if any)
 
         if num:
             logins.setdefault(base, []).append(int(num))
@@ -21,7 +20,7 @@ def generate_emails(existing: list[str], new_users: list[str]) -> list[str]:
 
     result = []
 
-    # Генерируем email для новых пользователей
+    # Generate emails for new users
     for login in new_users:
         if login not in logins:
             result.append(f"{login}@beegeek.bzz")
