@@ -1,43 +1,42 @@
-# Задача: посчитать стоимость выбранных ингредиентов бургера с использование ChainMap + Counter
+# Task: Calculate the cost of selected burger ingredients using ChainMap + Counter
 # https://github.com/python-generation/Professional/tree/main/Module_6/Module_6.9/Module_6.9.23
 
 from collections import ChainMap
 from collections import Counter
 
-# Словари с ценами на ингредиенты
-bread = {'булочка с кунжутом': 15, 'обычная булочка': 10, 'ржаная булочка': 15}
-meat = {'куриный бифштекс': 50, 'говяжий бифштекс': 70, 'рыбный бифштекс': 40}
-sauce = {'сливочно-чесночный': 15, 'кетчуп': 10, 'горчица': 10, 'барбекю': 15, 'чили': 15}
-vegetables = {'лук': 10, 'салат': 15, 'помидор': 15, 'огурцы': 10}
-toppings = {'сыр': 25, 'яйцо': 15, 'бекон': 30}
+# Dictionaries with ingredient prices
+bread = {'sesame bun': 15, 'plain bun': 10, 'rye bun': 15}
+meat = {'chicken patty': 50, 'beef patty': 70, 'fish patty': 40}
+sauce = {'garlic cream': 15, 'ketchup': 10, 'mustard': 10, 'barbecue': 15, 'chili': 15}
+vegetables = {'onion': 10, 'lettuce': 15, 'tomato': 15, 'cucumbers': 10}
+toppings = {'cheese': 25, 'egg': 15, 'bacon': 30}
 
-# Объединяем все словари в один (для удобного поиска цены по ингредиенту)
+# Merge all dictionaries into one (for easy price lookup by ingredient)
 burger = ChainMap(bread, meat, sauce, vegetables, toppings)
 
-# Ввод ингредиентов пользователем (через запятую)
+# User input of ingredients (comma-separated)
 ingr = input().split(',')
 
-# Считаем, сколько раз каждый ингредиент встречается
+# Count how many times each ingredient appears
 count = Counter(ingr)
 
-# Максимальная длина названия ингредиента (для выравнивания вывода)
+# Maximum length of ingredient name (for aligning output)
 maxi = max(map(len, ingr))
 
-# Переменные для итоговой суммы и ширины таблицы
+# Variables for total price and table width
 total_price = 0
 line_len = 0
 
-# Выводим ингредиенты в алфавитном порядке и считаем стоимость
+# Output ingredients in alphabetical order and calculate cost
 for item in sorted(count):
     line = f'{item:<{maxi}} x {count[item]}'
     total_price += burger[item] * count[item]
 
-    # Вычисляем максимальную ширину строки для оформления
+    # Calculate the maximum line width for formatting
     if len(line) > line_len:
         line_len = len(line)
 
     print(line)
 
-# Итоговая строка
-result_line = f'ИТОГ: {total_price}р'
-
+# Total line
+result_line = f'TOTAL: {total_price} rubles'
